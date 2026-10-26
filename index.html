@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b4aa2">
+<meta name="robots" content="noindex, follow">
+<title>A.S.D. Lokomotiv Maccagno | Calcio a 7</title>
+<meta name="description" content="A.S.D. Lokomotiv Maccagno, squadra di calcio a 7 fondata nel 2022. CSI Serie C Girone 1: calendario, risultati, rosa e campo di gioco.">
+<link rel="icon" href="img/stemma.jpg">
+<style>
+  :root {
+    --blu: #0b4aa2;
+    --blu-scuro: #082f6b;
+    --giallo: #ffcc00;
+    --testo: #14213d;
+    --sfondo: #ffffff;
+    --sfondo-alt: #f1f4fa;
+    --bordo: #dde3ef;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--testo); background: var(--sfondo); line-height: 1.55;
+  }
+  a { color: var(--blu); }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { text-transform: uppercase; letter-spacing: .5px; }
+
+  /* Header */
+  header { position: sticky; top: 0; z-index: 20; background: #fff; border-bottom: 4px solid var(--blu); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo img { height: 46px; width: auto; display: block; }
+  .logo span { font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: var(--blu); }
+  nav a { color: var(--testo); text-decoration: none; margin-left: 22px; font-weight: 700; font-size: .92rem; text-transform: uppercase; letter-spacing: .4px; }
+  nav a:hover { color: var(--blu); }
+  @media (max-width: 700px) { .logo span { display: none; } nav a { margin-left: 14px; font-size: .8rem; } }
+
+  /* Copertina */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    height: min(77.5vw, 820px); min-height: 280px;
+    background: var(--blu-scuro);
+  }
+  .hero-slideshow { position: absolute; inset: 0; }
+  .hero-slide {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0; transition: opacity 1.2s ease-in-out;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide-natale { object-position: center 68%; }
+  .hero-slide-fondatori { object-position: center 58%; }
+  .hero-slide-maglia { object-position: center 48%; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide { transition: none; }
+  }
+  .hero::before {
+    content: ""; position: absolute; z-index: 1; inset: 0;
+    background: linear-gradient(to bottom, rgba(4,20,60,.78), rgba(4,20,60,.35) 38%, rgba(4,20,60,0) 58%);
+  }
+  .hero-testo {
+    position: relative; z-index: 2; text-align: center; color: #fff;
+    padding: clamp(16px, 3vw, 40px) 16px 0; text-shadow: 0 2px 12px rgba(0,0,0,.45);
+  }
+  .hero-testo small { display: block; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; font-size: clamp(.7rem, 1.6vw, 1rem); }
+  .hero-testo h1 { font-size: clamp(1.5rem, 6vw, 4rem); line-height: 1.05; font-weight: 900; margin-top: 4px; }
+
+  .striscia { background: var(--blu-scuro); border-top: 4px solid var(--giallo); color: var(--giallo); }
+  .striscia .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 18px; padding-top: 16px; padding-bottom: 16px; }
+  .striscia span { font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: .95rem; }
+
+  .btn {
+    display: inline-block; padding: 11px 24px; background: var(--giallo); color: #0a1f4a; font-weight: 800;
+    text-decoration: none; text-transform: uppercase; letter-spacing: .5px; font-size: .9rem;
+    border: 2px solid var(--giallo); transition: background .2s, color .2s;
+  }
+  .btn:hover { background: transparent; color: var(--giallo); }
+  .btn.alt { background: transparent; color: #fff; border-color: #fff; }
+  .btn.alt:hover { background: #fff; color: var(--blu-scuro); }
+  .btn.blu { background: var(--blu); color: #fff; border-color: var(--blu); }
+  .btn.blu:hover { background: transparent; color: var(--blu); }
+
+  /* Sezioni */
+  section { padding: 64px 0; }
+  section:nth-of-type(even) { background: var(--sfondo-alt); }
+  h2 { font-size: 1.8rem; font-weight: 900; margin-bottom: 26px; color: var(--blu-scuro); }
+  h2::after { content: ""; display: block; width: 56px; height: 5px; background: var(--giallo); margin-top: 8px; }
+  h2.sec2 { margin-top: 52px; }
+
+  /* Prossima partita */
+  .match { background: #fff; border-top: 5px solid var(--giallo); padding: 30px 24px; text-align: center; box-shadow: 0 6px 20px rgba(8,47,107,.1); }
+  .match .tag { display: inline-block; background: var(--blu); color: #fff; font-size: .75rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; margin-bottom: 10px; }
+  .match .teams { font-size: clamp(1.15rem, 3.8vw, 1.9rem); font-weight: 900; text-transform: uppercase; }
+  .match .when { margin-top: 8px; font-weight: 700; color: var(--blu); }
+  .match .where { margin-top: 4px; color: #4a5875; font-size: .95rem; }
+
+  /* Calendario */
+  .lista { list-style: none; background: #fff; box-shadow: 0 2px 10px rgba(8,47,107,.06); }
+  .lista li { display: grid; grid-template-columns: 120px 1fr 64px; gap: 14px; padding: 14px 18px; border-bottom: 1px solid var(--bordo); align-items: center; border-left: 5px solid transparent; }
+  .lista li:last-child { border-bottom: 0; }
+  .lista li.prox { border-left-color: var(--giallo); background: #fffbe6; }
+  .lista li.passata { opacity: .8; }
+  .lista .data { font-size: .85rem; color: #4a5875; line-height: 1.3; }
+  .lista .data b { display: block; color: var(--testo); font-size: .95rem; }
+  .lista .gara b { font-weight: 800; }
+  .lista .luogo { display: block; margin-top: 2px; font-size: .82rem; color: #5b6784; }
+  .lista .ris { font-weight: 900; text-align: right; font-size: 1.05rem; }
+  .badge { display: inline-block; font-size: .65rem; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; padding: 1px 7px; margin-right: 6px; vertical-align: 2px; background: var(--blu); color: #fff; }
+  .badge.t { background: #fff; color: var(--blu); border: 1px solid var(--blu); }
+  .nota { margin-top: 14px; font-size: .85rem; color: #5b6784; }
+  @media (max-width: 560px) {
+    .lista li { grid-template-columns: 1fr 54px; gap: 4px 10px; }
+    .lista .data { grid-column: 1 / -1; }
+  }
+
+  /* Rosa */
+  .rosa-grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  table { width: 100%; border-collapse: collapse; background: #fff; box-shadow: 0 2px 10px rgba(8,47,107,.06); }
+  th { background: var(--blu); color: #fff; text-align: left; text-transform: uppercase; letter-spacing: .6px; font-size: .78rem; padding: 10px 14px; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--bordo); }
+  tr:last-child td { border-bottom: 0; }
+  tbody tr:nth-child(even) td { background: #f7f9fd; }
+  td.n { width: 64px; }
+  .num { display: inline-block; min-width: 32px; text-align: center; background: var(--giallo); color: #0a1f4a; font-weight: 900; padding: 1px 6px; }
+  td b { text-transform: uppercase; }
+  .cap { display: inline-block; margin-left: 6px; font-size: .7rem; font-weight: 900; background: var(--blu-scuro); color: var(--giallo); padding: 0 6px; vertical-align: 1px; }
+  .staff { margin-top: 26px; }
+  .staff h3 { font-size: 1rem; margin-bottom: 10px; color: var(--blu-scuro); }
+
+  /* Chi siamo */
+  .chi { display: grid; gap: 28px; grid-template-columns: 1fr 1fr; align-items: stretch; }
+  @media (max-width: 760px) { .chi { grid-template-columns: 1fr; } }
+  .cards { display: grid; gap: 16px; align-content: start; }
+  .card { background: #fff; padding: 20px 22px; border-left: 5px solid var(--giallo); box-shadow: 0 2px 10px rgba(8,47,107,.06); }
+  .card h3 { font-size: .95rem; margin-bottom: 4px; color: var(--blu); }
+  .foto-campo { background: url("img/campo.jpg") center / cover no-repeat, var(--blu-scuro); min-height: 280px; border-bottom: 5px solid var(--giallo); }
+
+  footer { background: var(--blu-scuro); color: #c9d4ee; text-align: center; padding: 28px 0; font-size: .9rem; border-top: 4px solid var(--giallo); }
+  footer a { color: var(--giallo); }
+  footer p + p { margin-top: 6px; font-size: .8rem; opacity: .85; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="img/stemma.jpg" alt="Stemma A.S.D. Lokomotiv Maccagno"><span>A.S.D. Lokomotiv Maccagno</span></a>
+    <nav>
+      <a href="#partita">Partite</a>
+      <a href="#rosa">Rosa</a>
+      <a href="#campo">Campo</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="hero-slideshow" aria-hidden="true">
+    <img class="hero-slide active" src="img/copertina/1.squadra_2025.jpg" alt="">
+    <img class="hero-slide hero-slide-fondatori" src="img/copertina/fondatori_inizio.jpg" alt="">
+    <img class="hero-slide hero-slide-natale" src="img/copertina/fondatori_natale_2025.jpg" alt="">
+    <img class="hero-slide hero-slide-natale" src="img/copertina/squadra_2025_natale.jpg" alt="">
+    <img class="hero-slide hero-slide-maglia" src="img/copertina/You’ll never walk alone.jpg" alt="">
+  </div>
+  <div class="hero-testo">
+    <small>Calcio a 7 · Dal 2022</small>
+    <h1>A.S.D. Lokomotiv Maccagno</h1>
+  </div>
+</div>
+<div class="striscia">
+  <div class="wrap">
+    <span>Campionato CSI · Serie C Girone 1 · Stagione 2026/27</span>
+    <a class="btn" href="#partita">Prossima partita</a>
+    <a class="btn alt" href="https://www.instagram.com/lokomotiv_maccagno" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</div>
+
+<section id="partita">
+  <div class="wrap">
+    <h2>Prossima partita</h2>
+    <div class="match" id="prossima"></div>
+
+    <h2 class="sec2">Calendario e risultati</h2>
+    <ul class="lista" id="lista"></ul>
+    <p class="nota">Calendario CSI Varese aggiornato al 06/10/2026: date e orari possono cambiare, verifica sempre sul sito CSI.</p>
+    <p style="margin-top:20px">
+      <a class="btn blu" href="https://live.centrosportivoitaliano.it/26/Calcio-a-7/Lombardia/Varese/C35987/?j=NEU9REZFJjRGPVBOSyY0Rz1HSU1MSyY0SD1GTEZLRkQmNEk9ZnI0dnIgUCBUdjQxMHIgRSY0TD1ERkUmNDI9ZQ==" target="_blank" rel="noopener">Classifica completa sul sito CSI</a>
+    </p>
+  </div>
+</section>
+
+<section id="rosa">
+  <div class="wrap">
+    <h2>Rosa 2026/27</h2>
+    <div class="rosa-grid">
+      <table>
+        <thead><tr><th>N°</th><th>Giocatore</th></tr></thead>
+        <tbody id="rosa-a"></tbody>
+      </table>
+      <table>
+        <thead><tr><th>N°</th><th>Giocatore</th></tr></thead>
+        <tbody id="rosa-b"></tbody>
+      </table>
+    </div>
+    <div class="staff">
+      <h3>Staff</h3>
+      <table>
+        <thead><tr><th>Ruolo</th><th>Nome</th></tr></thead>
+        <tbody>
+          <tr><td>Allenatore</td><td>Luca <b>Piazza</b></td></tr>
+          <tr><td>Vice allenatore</td><td>Gianluca <b>Costabile</b></td></tr>
+          <tr><td>Allenatore portieri</td><td>Luigi <b>Cannucciari</b></td></tr>
+          <tr><td>Dirigente</td><td>Juri <b>Murru</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="campo">
+  <div class="wrap">
+    <h2>La squadra e il campo</h2>
+    <div class="chi">
+      <div class="cards">
+        <div class="card"><h3>Fondazione</h3><p>2022</p></div>
+        <div class="card"><h3>Campionato</h3><p>CSI · Calcio a 7 · Serie C Girone 1<br><small>Campionato Nazionale · Fase Territoriale · Open M</small></p></div>
+        <div class="card"><h3>Campo di gioco</h3>
+          <p>Campo Pino Tronzano<br>Via Papa Giovanni XXIII 9<br>21061 Maccagno con Pino e Veddasca (VA)<br>
+          <a href="https://www.google.com/maps/search/?api=1&query=Campo+Pino+Tronzano+Via+Papa+Giovanni+XXIII+9+Maccagno+con+Pino+e+Veddasca" target="_blank" rel="noopener">Apri su Google Maps</a></p>
+        </div>
+      </div>
+      <div class="foto-campo" role="img" aria-label="Il campo Pino a Tronzano"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="wrap">
+    <h2>Contatti</h2>
+    <p>Seguici e scrivici su <a href="https://www.instagram.com/lokomotiv_maccagno" target="_blank" rel="noopener">Instagram @lokomotiv_maccagno</a>.</p>
+    <!-- Aggiungere qui eventuale email o referente -->
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 A.S.D. Lokomotiv Maccagno · <a href="https://www.instagram.com/lokomotiv_maccagno" target="_blank" rel="noopener">Instagram</a></p>
+    <p>Dati del calendario: Centro Sportivo Italiano, Comitato di Varese</p>
+  </div>
+</footer>
+
+<script>
+  /* ===================== DATI: modifica solo questa parte =====================
+     Risultato: gol: [nostri, avversario]  es. gol: [4, 2]   (null = non ancora inserito) */
+  const SQUADRA = "A.S.D. Lokomotiv Maccagno";
+  const CASA = { campo: "Campo Pino Tronzano", indirizzo: "Via Papa Giovanni XXIII 9, 21061 Maccagno con Pino e Veddasca (VA)" };
+
+  const C = (d, av, gol = null) => ({ d, av, casa: true, ...CASA, gol });
+  const T = (d, av, campo, indirizzo, gol = null) => ({ d, av, casa: false, campo, indirizzo, gol });
+
+  const PARTITE = [
+    C("2026-10-18T15:00", "C.S.I. Luvinate", [1, 4]),
+    T("2026-10-25T11:00", "Atletico Boschese", "Campo Sportivo Virginio Baroni", "Via Fabiasco 2, 21010 Montegrino Valtravaglia (VA)", [2, 2]),
+    C("2026-11-01T15:00", "Reges Owls"),
+    T("2026-11-08T19:00", "Virtus Bisuschio Gold", "Campo Sportivo Comunale di Bisuschio", "Via F. Bonvicini 17, 21050 Bisuschio (VA)"),
+    C("2026-11-15T15:00", "Deportivo Cadegliano"),
+    T("2026-11-21T15:00", "Torre di Velate", "C.S. La Talpa", "Viale dello Sport 25, 21026 Gavirate (VA)"),
+    C("2026-11-29T15:00", "Pv United"),
+    T("2026-12-04T20:30", "A.S. Casalvilla A", "Oratorio di Villadosia", "Via Antonio Gramsci 13, 21020 Casale Litta (VA)"),
+    C("2026-12-13T15:00", "Spes Oratorio Gemonio"),
+    T("2027-01-24T11:30", "Ass. Polisportiva Brusimpianese", "Campo Sportivo Comunale", "Via Gnocchi Viani 8, 21050 Brusimpiano (VA)"),
+    C("2027-01-31T15:00", "F.C. Caravate"),
+    T("2027-02-05T21:00", "C.S.I. Luvinate", "Campo di Luvinate", "Via Vittorio Veneto 45, 21020 Luvinate (VA)"),
+    C("2027-02-14T15:00", "Atletico Boschese"),
+    T("2027-02-20T18:30", "Reges Owls", "Campo Sportivo Comunale di Bisuschio", "Via F. Bonvicini 17, 21050 Bisuschio (VA)"),
+    C("2027-02-28T15:00", "Virtus Bisuschio Gold"),
+    T("2027-03-05T20:45", "Deportivo Cadegliano", "Campo Sportivo Trevalli", "Via Torino 82, 21030 Cugliate Fabiasco (VA)"),
+    C("2027-03-14T15:00", "Torre di Velate"),
+    T("2027-03-19T21:00", "Pv United", "C.S. Cara'", "Via Donatori del Sangue, 21010 Dumenza (VA)"),
+    C("2027-04-04T15:00", "A.S. Casalvilla A"),
+    T("2027-04-10T15:00", "Spes Oratorio Gemonio", "Campo di Gioco", "Via Curti SNC, 21036 Gemonio (VA)"),
+    C("2027-04-18T15:00", "Ass. Polisportiva Brusimpianese"),
+    T("2027-04-25T15:00", "F.C. Caravate", "Campo Sportivo Comunale", "Via Campo Sportivo 1, 21032 Caravate (VA)")
+  ];
+
+  const ROSA = [
+    [1, "Luca", "Minelli"], [3, "Andrea", "Roso"], [4, "Davide", "Franceschetti"], [5, "Manuel", "Galantina"],
+    [6, "Thomas", "Zanini"], [7, "Piero", "Fontana", "C"], [8, "Andrea", "Tedde"], [9, "Alberto", "Solinas"],
+    [10, "Matteo", "Pavia"], [11, "Giacomo", "Gambacorta"], [12, "Isaac", "Barzaghi"],
+    [13, "Sebastiano", "Puglisi"], [14, "Giordano", "Dangelo"], [15, "Andrea", "Fiorot"], [16, "Marco", "Zanni"],
+    [17, "Filippo", "Rinarelli"], [18, "Cristian", "Piazza"], [19, "", "Edinho"], [20, "Cherkaoui", "Hadik"],
+    [21, "Simone", "Fini"], [22, "Gionata", "Serra"], [27, "Roberto", "Gallina"]
+  ];
+  /* ============================================================================ */
+
+  const copertinaSlides = document.querySelectorAll(".hero-slide");
+  const movimentoRidotto = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let copertinaCorrente = 0;
+  if (!movimentoRidotto.matches && copertinaSlides.length > 1) {
+    window.setInterval(() => {
+      copertinaSlides[copertinaCorrente].classList.remove("active");
+      copertinaCorrente = (copertinaCorrente + 1) % copertinaSlides.length;
+      copertinaSlides[copertinaCorrente].classList.add("active");
+    }, 6000);
+  }
+
+  const dataBreve = d => d.toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
+  const giorno = d => d.toLocaleDateString("it-IT", { weekday: "long" });
+  const ora = d => d.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+  const mappa = p => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(p.campo + " " + p.indirizzo);
+  const nomi = p => p.casa ? `<b>${SQUADRA}</b> – ${p.av}` : `${p.av} – <b>${SQUADRA}</b>`;
+  const nomiPiani = p => p.casa ? `${SQUADRA} – ${p.av}` : `${p.av} – ${SQUADRA}`;
+  const risultato = p => p.gol ? (p.casa ? p.gol[0] + " – " + p.gol[1] : p.gol[1] + " – " + p.gol[0]) : "—";
+
+  const ordinate = [...PARTITE].sort((a, b) => new Date(a.d) - new Date(b.d));
+  const adesso = new Date();
+  const prossima = ordinate.find(p => p.gol === null && new Date(new Date(p.d).getTime() + 2 * 3600e3) > adesso);
+
+  /* Prossima partita */
+  document.getElementById("prossima").innerHTML = prossima ? (() => {
+    const d = new Date(prossima.d);
+    return `<span class="tag">${prossima.casa ? "In casa" : "Trasferta"}</span>
+      <div class="teams">${nomiPiani(prossima)}</div>
+      <div class="when">${giorno(d)} ${dataBreve(d)} · ore ${ora(d)}</div>
+      <div class="where">${prossima.campo}, ${prossima.indirizzo} · <a href="${mappa(prossima)}" target="_blank" rel="noopener">Mappa</a></div>`;
+  })() : `<div class="teams">Stagione conclusa</div>`;
+
+  /* Calendario */
+  document.getElementById("lista").innerHTML = ordinate.map(p => {
+    const d = new Date(p.d);
+    const cls = p === prossima ? "prox" : (new Date(p.d) < adesso ? "passata" : "");
+    return `<li class="${cls}">
+      <span class="data"><b>${dataBreve(d)}</b>${giorno(d)} · ${ora(d)}</span>
+      <span class="gara"><span class="badge ${p.casa ? "" : "t"}">${p.casa ? "Casa" : "Trasf."}</span>${nomi(p)}
+        <span class="luogo">${p.campo}, ${p.indirizzo} · <a href="${mappa(p)}" target="_blank" rel="noopener">Mappa</a></span></span>
+      <span class="ris">${risultato(p)}</span>
+    </li>`;
+  }).join("");
+
+  /* Rosa */
+  const riga = ([n, nome, cognome, cap]) =>
+    `<tr><td class="n"><span class="num">${n}</span></td><td>${nome ? nome + " " : ""}<b>${cognome}</b>${cap ? '<span class="cap" title="Capitano">C</span>' : ""}</td></tr>`;
+  const meta = Math.ceil(ROSA.length / 2);
+  document.getElementById("rosa-a").innerHTML = ROSA.slice(0, meta).map(riga).join("");
+  document.getElementById("rosa-b").innerHTML = ROSA.slice(meta).map(riga).join("");
+</script>
+
+</body>
+</html>
