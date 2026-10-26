@@ -310,7 +310,7 @@
   const dataBreve = d => d.toLocaleDateString("it-IT", { day: "numeric", month: "short", year: "numeric" });
   const giorno = d => d.toLocaleDateString("it-IT", { weekday: "long" });
   const ora = d => d.toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
-  const mappa = p => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(p.campo + " " + p.indirizzo);
+  const mappa = p => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(p.indirizzo);
   const nomi = p => p.casa ? `<b>${SQUADRA}</b> – ${p.av}` : `${p.av} – <b>${SQUADRA}</b>`;
   const nomiPiani = p => p.casa ? `${SQUADRA} – ${p.av}` : `${p.av} – ${SQUADRA}`;
   const risultato = p => p.gol ? (p.casa ? p.gol[0] + " – " + p.gol[1] : p.gol[1] + " – " + p.gol[0]) : "—";
